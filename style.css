@@ -1,11 +1,141 @@
+html {
+    height: 100%
+}
+
 body {
     background-color: black;
     color: white;
     margin: 0;
     height: 100%;
+    display: flex;
+    font-family: sans-serif;
+}
+
+button {
+    color: white;
 }
 
 nav {
-    background-color: #222222;
+    background-color: #111;
     margin-top: 0;
+    padding: 0.5rem;
+    height: calc(100dvh - 1rem);
+}
+
+nav div {
+    margin-top: .5rem;
+    overflow: scroll;
+    height: calc(100dvh - 3.5rem);
+    display: flex;
+    flex-direction: column;
+}
+
+nav p {
+    margin: 0;
+    font-size: 2rem;
+}
+
+nav button {
+    margin: 3px;
+    border: 0;
+    background-color: #111;
+    font-size: 1.5rem;
+    width: 20ch;
+    text-align: left;
+    border-radius: .2em;
+}
+
+nav button::before {
+    display: inline-block;
+    height: 1em;
+    aspect-ratio: 1/1;
+    content: "";
+    background-color: white;
+}
+
+nav button.chat::before {
+    mask-image: URL(media/chat.svg);
+}
+
+nav button.forum::before {
+    mask-image: URL(media/forum.svg);
+}
+
+nav button:hover {
+    background-color: #333;
+}
+
+main {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: scroll;
+}
+
+@media (width < 50ch) {
+    nav:not(:focus-within) {
+        width: 5ch;
+    }
+
+    nav:not(:focus-within) p {
+        overflow: hidden;
+    }
+}
+
+message {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 3rem;
+}
+
+message:hover {
+    background-color: #111;
+}
+
+message::before {
+    height: 2rem;
+    width: 2rem;
+    content: "";
+    position: absolute;
+    left: 0.2rem;
+    top: 0.2rem;
+    background-image: url(media/user.svg), linear-gradient(to bottom right, skyblue, plum);
+    border-radius: 100%;
+}
+
+message author {
+    color: gray;
+    font-size: 0.9rem;
+}
+
+message actions {
+    display: none;
+    position: absolute;
+    right: 3rem;
+    top: 0.1rem;
+    height: 1rem;
+    width: 3rem;
+    border-radius: 0.1rem;
+    background-color: #333;
+    padding: 0.1rem;
+}
+
+message:hover actions {
+    display: flex;
+}
+
+message actions button {
+    aspect-ratio: 1/1;
+    border-radius: 0;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+message actions button:hover {
+    background-color: #fff2;
+}
+
+message actions button img {
+    height: 100%;
 }
