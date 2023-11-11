@@ -77,14 +77,14 @@ function addMessage(content, author="system", ontop=false) {
 async function loadChat(id) {
     chatbox.innerHTML = "";
     location.hash = id;
-    const response = await fetch("api.php", {
+    request = await fetch("api.php", {
         method: "POST",
-        body: lzw_encode(JSON.stringify({
+        body: JSON.stringify({
             action: "get_latest",
             chat: id,
-        })),
+        }),
     });
-    const chat = JSON.parse(lzw_decode(await response.text()));
+    const chat = await request.json();
     chat.messages.forEach(data => {
         const message = JSON.parse(data.content);
         addMessage(message.content, message.author);

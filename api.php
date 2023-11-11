@@ -13,7 +13,7 @@
 * @param string messages to compress
 * @return string binary messages
 */
-function lzw_encode($string) {
+function lzw_compress($string) {
 	// compression
 	$dictionary = array_flip(range("\0", "\xFF"));
 	$word = "";
@@ -55,7 +55,7 @@ function lzw_encode($string) {
 * @param string compressed binary messages
 * @return string original messages
 */
-function lzw_decode($binary) {
+function lzw_decompress($binary) {
 	// convert binary string to codes
 	$dictionary_count = 256;
 	$bits = 8; // ceil(log($dictionary_count, 2))
@@ -97,7 +97,7 @@ function lzw_decode($binary) {
 
 require_once "dbdata.php";
 
-$request = json_decode(lzw_decode(file_get_contents("php://input")));
+$request = json_decode(file_get_contents("php://input"));
 switch ($request->action) {
     case 'get_latest':
         $query = $db->prepare("SELECT id, content FROM messages WHERE chat=:chat");
@@ -107,6 +107,6 @@ switch ($request->action) {
             "messages" => $messages,
         ];
         $response = json_encode($response);
-        echo lzw_encode($response);
+        echo $response;
         break;
 }
