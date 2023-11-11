@@ -65,7 +65,7 @@ nav button:hover {
     background-color: #333;
 }
 
-main {
+chatbox {
     flex-grow: 1;
     padding: 1rem;
     overflow-y: scroll;
