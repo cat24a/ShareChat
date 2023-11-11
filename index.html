@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>chat - ShareChat</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="app.js" defer></script>
+    </head>
+    <body>
+        <nav>
+            <p>ShareChat</p>
+            <div>
+            </div>
+        </nav>
+        <main>
+            <chatbox></chatbox>
+        </main>
+    </body>
+</html>
+
+<template id="message">
+    <message>
+        <author>cat24a</author>
+        <content>This app is really fun.</content>
+        <actions>
+            <button class="edit"><img src="media/edit.svg" /></button>
+            <button class="reply"><img src="media/reply.svg" /></button>
+            <button class="delete"><img src="./media/delete.svg" /></button>
+        </actions>
+    </message>
+</template>
