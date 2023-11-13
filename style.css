@@ -65,6 +65,12 @@ nav button:hover {
     background-color: #333;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
 chatbox {
     flex-grow: 1;
     padding: 1rem;
@@ -138,4 +144,26 @@ message actions button:hover {
 
 message actions button img {
     height: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+}
+
+form input {
+    flex-grow: 1;
+    background-color: #111;
+    border: none;
+    margin: .5em;
+    border-radius: .5em;
+}
+
+form button {
+    margin: .5em;
+    border: none;
+    border-radius: .5em;
+    background-color: #213;
+    height: 4em;
+    width: 4em;
 }
