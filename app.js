@@ -61,6 +61,7 @@ function lzw_decode(s) {
 
 const chatbox = document.querySelector("chatbox");
 const message_template = document.querySelector("#message");
+const form = document.querySelector("form");
 
 
 function addMessage(content, author="system", ontop=false) {
@@ -90,3 +91,7 @@ async function loadChat(id) {
         addMessage(message.content, message.author);
     })
 }
+
+form.addEventListener("submit", e => {
+    e.preventDefault();
+})
