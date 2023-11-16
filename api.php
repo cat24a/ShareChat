@@ -16,6 +16,6 @@ switch ($request->action) {
         break;
 	case "send":
 		$query = $db->prepare("INSERT INTO `messages`(`chat`, `content`) VALUES (:chat, :content)");
-		$query->execute($request);
+		$query->execute(["chat"=>$request->chat, "content"=>$request->content]);
 		break;
 }
