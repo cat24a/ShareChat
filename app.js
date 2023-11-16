@@ -78,20 +78,30 @@ function addMessage(content, author="system", ontop=false) {
 async function loadChat(id) {
     chatbox.innerHTML = "";
     location.hash = id;
-    request = await fetch("api.php", {
+    const response = await fetch("api.php", {
         method: "POST",
         body: JSON.stringify({
             action: "get_latest",
             chat: id,
         }),
     });
-    const chat = await request.json();
+    const chat = await response.json();
     chat.messages.forEach(data => {
         const message = JSON.parse(data.content);
         addMessage(message.content, message.author);
     })
 }
 
-form.addEventListener("submit", e => {
+form.addEventListener("submit", async e => {
     e.preventDefault();
+    const response = await fetch("api.php", {
+        method: "POST",
+        body: JSON.stringify({
+            action: "send",
+            chat: Number(location.hash.substring(1)),
+            content: JSON.stringify({
+                "content": form.message.value,
+            }),
+        })
+    })
 })
