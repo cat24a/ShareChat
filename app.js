@@ -62,6 +62,7 @@ function lzw_decode(s) {
 const chatbox = document.querySelector("chatbox");
 const message_template = document.querySelector("#message");
 const form = document.querySelector("form");
+const username_box = document.querySelector("#username");
 
 
 function addMessage(content, author="system", ontop=false) {
@@ -75,14 +76,13 @@ function addMessage(content, author="system", ontop=false) {
     }
 }
 
-async function loadChat(id) {
+async function loadChat() {
     chatbox.innerHTML = "";
-    location.hash = id;
     const response = await fetch("api.php", {
         method: "POST",
         body: JSON.stringify({
             action: "get_latest",
-            chat: id,
+            chat: location.hash.substring(1),
         }),
     });
     const chat = await response.json();
@@ -101,7 +101,10 @@ form.addEventListener("submit", async e => {
             chat: Number(location.hash.substring(1)),
             content: JSON.stringify({
                 "content": form.message.value,
+                "author": username_box.value,
             }),
         })
     })
 })
+
+loadChat();
