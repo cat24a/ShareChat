@@ -105,6 +105,7 @@ form.addEventListener("submit", async e => {
             }),
         })
     })
+    form.message.value = "";
 })
 
 loadChat();
